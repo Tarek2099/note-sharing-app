@@ -31,9 +31,13 @@ const MyNotes = () => {
               className="note p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
               key={note.id}
             >
-              <h2>{note.title}</h2>
-              <p>{note.content}</p>
-              <div className="events">
+              <div className="content h-50">
+                <h2 className="text-md md:text-xl lg:text-xl font-bold mb-2">
+                  {note.title}
+                </h2>
+                <p>{note.content}</p>
+              </div>
+              <div className="events flex justify-between ">
                 <button
                   className="bg-blue-500 text-white mx-4 px-2 rounded"
                   onClick={() => handleDelete(note.id)}

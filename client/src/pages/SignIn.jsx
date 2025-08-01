@@ -1,15 +1,33 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import app from "../firebase/firebase.config";
 
 const SignIn = ({ setIsLoggedIn }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const auth = getAuth(app);
+  const navigate = useNavigate();
 
   // Handle form submission
   const handleSubmit = (e) => {
-    e.preventDefault;
+    e.preventDefault();
     // Send the email and password to the server or handle authentication
-    setIsLoggedIn(true);
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        // ...
+        setIsLoggedIn(true);
+        navigate("/");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        alert(`Error: ${errorMessage}`);
+      });
+
+
   };
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100">

@@ -1,20 +1,39 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
+import { useNavigate } from "react-router";
+import app from "../firebase/firebase.config";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const SignUp = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const auth = getAuth(app);
+
 
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     // Send the username, email, and password to your server
-    console.log("Form submitted:", { username, email, password });
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed up 
+        const user = userCredential.user;
+        console.log(user)
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
+
     setUsername("");
     setEmail("");
     setPassword("");
+    // Redirect to the sign-in page 
+    navigate("/signin")
   };
 
   useEffect(() => {

@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import MyNotes from "./pages/MyNotes";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
+import ProtectedRoutes from "./routes/protectedRoutes";
 
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -17,10 +18,10 @@ const App = () => {
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="/mynotes" element={<MyNotes />} />
+          <Route path="/mynotes" element={<ProtectedRoutes><MyNotes /></ProtectedRoutes>} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/addnote" element={<AddNote />} />
+          <Route path="/addnote" element={<ProtectedRoutes><AddNote /></ProtectedRoutes>} />
         </Route>
       </Routes>
     </MyContext>

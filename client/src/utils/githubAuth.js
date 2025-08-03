@@ -5,8 +5,8 @@ import { getAuth, signInWithPopup, GithubAuthProvider } from "firebase/auth";
 const auth = getAuth(app);
 const provider = new GithubAuthProvider();
 
+
 const githubAuth = () => {
-    const navigate = useNavigate();
     return signInWithPopup(auth, provider)
         .then((result) => {
             // This gives you a GitHub Access Token. You can use it to access the GitHub API.
@@ -15,7 +15,6 @@ const githubAuth = () => {
             // The signed-in user info.
             const user = result.user;
             // Navigate to the home page
-            navigate("/");
             return { user, token };
         })
         .catch((error) => {

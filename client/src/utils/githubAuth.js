@@ -1,12 +1,15 @@
 import { useNavigate } from "react-router";
 import app from "../firebase/firebase.config";
 import { getAuth, signInWithPopup, GithubAuthProvider } from "firebase/auth";
+import { useContext } from "react";
+import { MyContext } from "../context/MyContext";
 
 const auth = getAuth(app);
 const provider = new GithubAuthProvider();
 
 
 const githubAuth = () => {
+
     return signInWithPopup(auth, provider)
         .then((result) => {
             // This gives you a GitHub Access Token. You can use it to access the GitHub API.

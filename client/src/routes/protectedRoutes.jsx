@@ -1,9 +1,11 @@
-import { Children } from "react";
-import getUser from "../utils/getUser";
+import { Children, useContext } from "react";
+import getUser from "../hooks/useGetUser";
+import { MyContext } from "../context/MyContext";
 
 const ProtectedRoutes = ({ children }) => {
-    const user = getUser();
-    console.log(user)
+    const { state, dispatch } = useContext(MyContext);
+    const { user } = state;
+    console.log(state);
     if (user) {
         return children;
     } else {

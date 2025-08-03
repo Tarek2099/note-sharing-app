@@ -5,7 +5,7 @@ const reducer = (state, action) => {
                 ...state,
                 notes: [...state.notes, action.payload],
             }
-        case 'ACTIVE_NOTE': 
+        case 'ACTIVE_NOTE':
             return {
                 ...state,
                 activeNote: action.payload
@@ -14,8 +14,8 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 notes: state.notes.map(note => {
-                    if(note.id === action.payload.id) {
-                        return { ...note, ...action.payload}
+                    if (note.id === action.payload.id) {
+                        return { ...note, ...action.payload }
                     }
                     return note;
                 })
@@ -25,6 +25,11 @@ const reducer = (state, action) => {
                 ...state,
                 notes: state.notes.filter(note => note.id !== action.payload.id)
             }
+        case 'SET_USER':
+            return {
+                ...state,
+                user: action.payload
+            };
         default:
             return state;
     }

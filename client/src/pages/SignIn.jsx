@@ -2,12 +2,14 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import app from "../firebase/firebase.config";
+import LoginProvider from "../components/LoginProvider";
 
 const SignIn = ({ setIsLoggedIn }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const auth = getAuth(app);
   const navigate = useNavigate();
+
 
   // Handle form submission
   const handleSubmit = (e) => {
@@ -24,7 +26,7 @@ const SignIn = ({ setIsLoggedIn }) => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        alert(`Error: ${errorMessage}`);
+        console.log(`Error: ${errorMessage}`);
       });
 
 
@@ -63,12 +65,7 @@ const SignIn = ({ setIsLoggedIn }) => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <p className="mb-2">
-            Don't have an account?{" "}
-            <Link to="/signup" className="text-blue-600">
-              Sign Up
-            </Link>
-          </p>
+
           <button
             type="submit"
             className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-200 cursor-pointer"
@@ -76,6 +73,14 @@ const SignIn = ({ setIsLoggedIn }) => {
             Sign In
           </button>
         </form>
+        <p className="text-center mt-2">Or Sign In with</p>
+        <LoginProvider />
+        <p className="text-center">
+          Don't have an account?{" "}
+          <Link to="/signup" className="text-blue-600">
+            Sign Up
+          </Link>
+        </p>
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import { Link } from "react-router";
 import { useNavigate } from "react-router";
 import app from "../firebase/firebase.config";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import LoginProvider from "../components/LoginProvider";
 
 const SignUp = () => {
   const [username, setUsername] = useState("");
@@ -105,12 +106,7 @@ const SignUp = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <p className="mb-2">
-            Have already an account?{" "}
-            <Link to="/signin" className="text-blue-600 font-bold">
-              Sign In
-            </Link>
-          </p>
+
           <button
             type="submit"
             className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 cursor-pointer"
@@ -118,6 +114,14 @@ const SignUp = () => {
             Sign Up
           </button>
         </form>
+        <p className="text-center mt-2">Or sign up with</p>
+        <LoginProvider />
+        <p className="text-center">
+          Have already an account?{" "}
+          <Link to="/signin" className="text-blue-600 font-bold">
+            Sign In
+          </Link>
+        </p>
       </div>
     </div>
   );

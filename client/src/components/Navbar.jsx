@@ -9,8 +9,8 @@ const Navbar = () => {
     setIsProfile(!isProfile);
   };
   return (
-    <>
-      <div className="navbar max-w-7xl flex items-center justify-between mx-auto bg-light p-4 shadow">
+    <div className="max-w-full shadow">
+      <div className="navbar max-w-7xl flex items-center justify-between mx-auto bg-light p-4">
         <div className="brand">
           <h2 className="text-2xl font-bold">Note</h2>
         </div>
@@ -20,7 +20,7 @@ const Navbar = () => {
           {isProfile ? <Profile /> : null}
         </nav>
       </div>
-    </>
+    </div>
   );
 };
 

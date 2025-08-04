@@ -1,1 +1,5 @@
 @import "tailwindcss";
+
+.btn-profile-update {
+    @apply w-full px-4 text-left font-bold cursor-pointer hover:bg-gray-100 hover:rounded;
+}

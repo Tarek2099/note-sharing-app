@@ -73,6 +73,7 @@ const dummyNotes = {
   ],
   activeNote: null,
   user: null,
+  loading: true,
 }
 
 export default dummyNotes;

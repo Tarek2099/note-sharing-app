@@ -10,6 +10,7 @@ import MyNotes from "./pages/MyNotes";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import ProtectedRoutes from "./routes/protectedRoutes";
+import ProfileSettings from "./pages/ProfileSettings";
 
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/addnote" element={<ProtectedRoutes><AddNote /></ProtectedRoutes>} />
+          <Route path="/profile/settings" element={<ProtectedRoutes><ProfileSettings /></ProtectedRoutes>} />
         </Route>
       </Routes>
     </MyContext>

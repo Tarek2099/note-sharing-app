@@ -30,6 +30,11 @@ const reducer = (state, action) => {
                 ...state,
                 user: action.payload
             };
+        case "SET_LOADING":
+            return {
+                ...state,
+                loading: action.payload
+            }
         default:
             return state;
     }

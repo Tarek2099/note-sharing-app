@@ -8,16 +8,14 @@ const auth = getAuth(app);
 
 
 const useGetUser = () => {
-    const { state, dispatch } = useContext(MyContext)
-    const { user } = state;
+    const { state, dispatch } = useContext(MyContext);
+
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 const uid = user.uid;
-                console.log(user);
-
-                dispatch({ type: "SET_USER", payload: user })
-            } else {
+                dispatch({ type: "SET_USER", payload: user });
+                dispatch({ type: "SET_LOADING", payload: false })
             }
         });
     }, [dispatch])

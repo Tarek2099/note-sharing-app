@@ -1,18 +1,20 @@
 import { useContext, useState } from "react"
 import { MyContext } from "../context/MyContext"
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { FaUserEdit, FaCamera } from "react-icons/fa";
 import { MdEmail, MdLockReset } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import ChangeName from "../components/UpdateForms/ChangeName";
 import ChangeEmail from "../components/UpdateForms/ChangeEmail";
 import ImgUpdateForm from "../components/UpdateForms/ImgUpdate";
+import { FiLogOut } from 'react-icons/fi';
+import logoutHandler from "../utils/logoutAuth";
 
 const ProfileSettings = () => {
     const [activeSection, setActiveSection] = useState(null);
     const { state } = useContext(MyContext);
     const { user } = state;
-
+    const navigate = useNavigate();
 
     return (
         <div className="settings flex flex-col md:flex-row gap-12 max-w-7xl mx-auto mt-4">
@@ -29,6 +31,7 @@ const ProfileSettings = () => {
                     <button className="btn-profile-update" onClick={() => setActiveSection("fpassword")}><MdLockReset className="inline mr-2" />Forget Password</button>
                     <button className="btn-profile-update" onClick={() => setActiveSection("dept")}><MdLockReset className="inline mr-2" />Edit Your Department</button>
                     <button className="btn-profile-update" onClick={() => setActiveSection("about")}><MdLockReset className="inline mr-2" />About</button>
+                    <button className="btn-profile-update" onClick={() => logoutHandler(navigate)}><FiLogOut className="inline mr-2" />Log Out</button>
                 </div>
             </div>
             <div className="changeForm max-w-full">

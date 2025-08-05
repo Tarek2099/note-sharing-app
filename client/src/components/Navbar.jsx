@@ -17,7 +17,7 @@ const Navbar = () => {
 
   // Handle Profile Click
   const profileHandler = () => {
-    navigate("/profile/settings")
+    user ? navigate("/profile/settings") : navigate("/signin");
   }
   return (
     <div className="max-w-full shadow">

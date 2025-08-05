@@ -1,9 +1,20 @@
+import { useState } from "react";
+import useUpdateUser from "../../hooks/useUpdateUser";
+
 const ChangeEmail = () => {
+    const [email, setEmail] = useState("");
+
+    const updateEmail = (e) => {
+        setEmail(e.target.value);
+        // Here Update the email in the database or Firebase
+        useUpdateUser(email);
+    }
+
     return (
         <form className="space-y-4 max-w-md">
             <div>
                 <label className="block text-sm font-medium">Email</label>
-                <input type="email" className="w-full border rounded p-2" />
+                <input type="email" className="w-full border rounded p-2" onChange={updateEmail} />
             </div>
             <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
                 Update

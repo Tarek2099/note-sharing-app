@@ -4,12 +4,11 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import app from "../firebase/firebase.config";
 import LoginProvider from "../components/LoginProvider";
 
-const SignIn = ({ setIsLoggedIn }) => {
+const SignIn = (setIsLoggedIn) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const auth = getAuth(app);
   const navigate = useNavigate();
-
 
   // Handle form submission
   const handleSubmit = (e) => {
@@ -19,14 +18,14 @@ const SignIn = ({ setIsLoggedIn }) => {
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
-        // ...
-        setIsLoggedIn(true);
-        navigate("/");
+        console.log("Login successful");
+
+        // setIsLoggedIn(true);
+        navigate("/mynotes");
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(`Error: ${errorMessage}`);
       });
 
 

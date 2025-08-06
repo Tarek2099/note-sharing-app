@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { useNavigate } from "react-router";
 import app from "../firebase/firebase.config";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import LoginProvider from "../components/LoginProvider";
 
 const SignUp = () => {
@@ -17,12 +17,18 @@ const SignUp = () => {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
+
     // Send the username, email, and password to your server
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed up 
         const user = userCredential.user;
-        console.log(user)
+
+        // Verify the user email
+        sendEmailVerification(user)
+          .then(() => {
+            console.log("Email verification sent");
+          }).catch((error) => console.log("Error sending email verification:", error));
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -34,7 +40,9 @@ const SignUp = () => {
     setEmail("");
     setPassword("");
     // Redirect to the sign-in page 
-    navigate("/signin")
+    navigate("/signin");
+
+
   };
 
   useEffect(() => {

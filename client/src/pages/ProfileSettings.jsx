@@ -9,6 +9,8 @@ import ChangeEmail from "../components/UpdateForms/ChangeEmail";
 import ImgUpdateForm from "../components/UpdateForms/ImgUpdate";
 import { FiLogOut } from 'react-icons/fi';
 import logoutHandler from "../utils/logoutAuth";
+import ResetPassword from "../components/UpdateForms/ResetPassword"
+import ChangePassword from "../components/UpdateForms/ChangePassword";
 
 const ProfileSettings = () => {
     const [activeSection, setActiveSection] = useState(null);
@@ -18,7 +20,7 @@ const ProfileSettings = () => {
 
     return (
         <div className="settings flex flex-col md:flex-row gap-12 max-w-7xl mx-auto mt-4">
-            <div className="options max-w-full md:max-w-80 h-[calc(100vh-6rem)] p-4 shadow rounded">
+            <div className="options max-w-full md:w-[25%] h-[calc(100vh-6rem)] p-4 shadow rounded">
                 <div className="flex flex-col gap-2 items-center">
                     <img src={user?.photoURL} alt="Profile" className="w-32 h-32 rounded-full mb-2" />
                     <h3 className="font-bold">{user?.displayName || "N\A"}</h3>
@@ -28,16 +30,18 @@ const ProfileSettings = () => {
                     <button className="btn-profile-update" onClick={() => setActiveSection("email")}><MdEmail className="inline mr-2" />Change Your Email</button>
                     <button className="btn-profile-update" onClick={() => setActiveSection("photo")}><FaCamera className="inline mr-2" />Change Your Photo</button>
                     <button className="btn-profile-update" onClick={() => setActiveSection("password")}><RiLockPasswordLine className="inline mr-2" />Change Your Password</button>
-                    <button className="btn-profile-update" onClick={() => setActiveSection("fpassword")}><MdLockReset className="inline mr-2" />Forget Password</button>
+                    <button className="btn-profile-update" onClick={() => setActiveSection("resetPassword")}><MdLockReset className="inline mr-2" />Forget Password</button>
                     <button className="btn-profile-update" onClick={() => setActiveSection("dept")}><MdLockReset className="inline mr-2" />Edit Your Department</button>
                     <button className="btn-profile-update" onClick={() => setActiveSection("about")}><MdLockReset className="inline mr-2" />About</button>
                     <button className="btn-profile-update" onClick={() => logoutHandler(navigate)}><FiLogOut className="inline mr-2" />Log Out</button>
                 </div>
             </div>
-            <div className="changeForm max-w-full">
+            <div className="changeForm max-w-full md:w-[75%]">
                 {activeSection === "name" && <ChangeName />}
                 {activeSection === "email" && <ChangeEmail />}
                 {activeSection === "photo" && <ImgUpdateForm />}
+                {activeSection === "resetPassword" && <ResetPassword />}
+                {activeSection === "password" && <ChangePassword />}
             </div>
         </div>
     )

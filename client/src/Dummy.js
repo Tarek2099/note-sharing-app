@@ -74,6 +74,8 @@ const dummyNotes = {
   activeNote: null,
   user: null,
   loading: true,
+  isLoggedIn: false,
+  isVarified: false,
 }
 
 export default dummyNotes;

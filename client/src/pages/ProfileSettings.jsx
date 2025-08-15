@@ -1,7 +1,7 @@
 import { useContext, useState } from "react"
 import { MyContext } from "../context/MyContext"
 import { Link, useNavigate } from "react-router";
-import { FaUserEdit, FaCamera } from "react-icons/fa";
+import { FaUserEdit, FaCamera, FaUnlock, FaRegAddressCard } from "react-icons/fa";
 import { MdEmail, MdLockReset } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import ChangeName from "../components/UpdateForms/ChangeName";
@@ -30,9 +30,9 @@ const ProfileSettings = () => {
                     <button className="btn-profile-update" onClick={() => setActiveSection("email")}><MdEmail className="inline mr-2" />Change Your Email</button>
                     <button className="btn-profile-update" onClick={() => setActiveSection("photo")}><FaCamera className="inline mr-2" />Change Your Photo</button>
                     <button className="btn-profile-update" onClick={() => setActiveSection("password")}><RiLockPasswordLine className="inline mr-2" />Change Your Password</button>
-                    <button className="btn-profile-update" onClick={() => setActiveSection("resetPassword")}><MdLockReset className="inline mr-2" />Forget Password</button>
+                    <button className="btn-profile-update" onClick={() => setActiveSection("resetPassword")}><FaUnlock className="inline mr-2" />Forget Password</button>
                     <button className="btn-profile-update" onClick={() => setActiveSection("dept")}><MdLockReset className="inline mr-2" />Edit Your Department</button>
-                    <button className="btn-profile-update" onClick={() => setActiveSection("about")}><MdLockReset className="inline mr-2" />About</button>
+                    <button className="btn-profile-update" onClick={() => setActiveSection("about")}><FaRegAddressCard className="inline mr-2" />About</button>
                     <button className="btn-profile-update" onClick={() => logoutHandler(navigate)}><FiLogOut className="inline mr-2" />Log Out</button>
                 </div>
             </div>

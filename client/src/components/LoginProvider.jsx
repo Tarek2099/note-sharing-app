@@ -1,14 +1,19 @@
 import { FaGoogle, FaFacebook, FaGithub } from "react-icons/fa";
 import githubAuth from "../utils/githubAuth";
 import { useNavigate } from "react-router-dom";
+import useGetUser from "../hooks/useGetUser";
 
 const LoginProvider = () => {
     const navigate = useNavigate();
+    useGetUser();
+
     // Function to handle Github login
     const handleGithubLogin = async () => {
         try {
             await githubAuth();
-            navigate("/mynotes");
+
+            navigate("/");
+            console.log("Log in successful");
         } catch (error) {
             console.log(error.message);
         }

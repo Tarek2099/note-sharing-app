@@ -10,9 +10,9 @@ const SignUp = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("")
   const navigate = useNavigate();
   const auth = getAuth(app);
-
 
   // Handle form submission
   const handleSubmit = (e) => {
@@ -27,7 +27,9 @@ const SignUp = () => {
         // Verify the user email
         sendEmailVerification(user)
           .then(() => {
-            console.log("Email verification sent");
+            setMessage("Email verification sent");
+            console.log(message);
+
           }).catch((error) => console.log("Error sending email verification:", error));
       })
       .catch((error) => {
@@ -40,28 +42,34 @@ const SignUp = () => {
     setEmail("");
     setPassword("");
     // Redirect to the sign-in page 
-    navigate("/signin");
+    // navigate("/signin");
 
+    setTimeout(() => {
+      setMessage(""); // Clear the message after 2 minutes
+    }, 2000)
 
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/`);
-        console.log("Data fetched:", response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await axios.get(`${import.meta.env.VITE_API_URL}/`);
+  //       console.log("Data fetched:", response.data);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
 
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="flex items-center justify-center h-[calc(100vh-5rem)]">
       <div className="p-6 rounded-lg shadow-lg w-96">
-        <h1 className="text-3xl font-bold text-center mt-10">Sign Up</h1>
-        <form className="max-w-md mx-auto mt-8" onSubmit={handleSubmit}>
+        <h1 className="text-3xl font-bold text-center">Sign Up</h1>
+        {
+          message && <p className="p-2 mt-2 text-green-600 text-center bg-green-200">{message}</p>
+        }
+        <form className="max-w-md mx-auto mt-5" onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
               className="block text-sm font-medium mb-2"

@@ -1,13 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import MyNotes from "./MyNotes";
 import SignIn from "./SignIn";
+import { MyContext } from "../context/MyContext";
 
 const Home = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { state, dispatch } = useContext(MyContext);
+  const { isLoggedIn, user, loading } = state;
+
 
   return (
     <div>
-      {isLoggedIn ? <MyNotes /> : <SignIn setIsLoggedIn={setIsLoggedIn} />}
+      {user ? <MyNotes /> : <SignIn />}
     </div>
   );
 };

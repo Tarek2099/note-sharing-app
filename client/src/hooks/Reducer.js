@@ -34,6 +34,16 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 loading: action.payload
+            };
+        case "IsloggedIn":
+            return {
+                ...state,
+                isLoggedIn: action.payload
+            };
+        case "IsVarified":
+            return {
+                ...state,
+                isVarified: action.payload
             }
         default:
             return state;
